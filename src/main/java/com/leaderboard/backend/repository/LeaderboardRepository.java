@@ -14,7 +14,7 @@ import com.leaderboard.backend.model.LeaderboardEntity;
 public interface LeaderboardRepository extends JpaRepository<LeaderboardEntity, UUID> {
     List<LeaderboardEntity> findTop3ByOrderByPointsDesc();
 
-    @Query(value = "SELECT * FROM students ORDER BY points DESC LIMIT :limit OFFSET :offset", nativeQuery = true)
+    @Query(value = "SELECT * FROM leaderboard ORDER BY points DESC LIMIT :limit OFFSET :offset", nativeQuery = true)
     public List<LeaderboardEntity> getPlaces(@Param("offset") int offset, @Param("limit") int limit);
 
 }

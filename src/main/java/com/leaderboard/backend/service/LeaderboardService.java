@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.leaderboard.backend.model.LeaderboardEntity;
 import com.leaderboard.backend.repository.LeaderboardRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class LeaderboardService {
     private final LeaderboardRepository leaderboardRepository;
@@ -28,6 +30,7 @@ public class LeaderboardService {
     }
 
     // adds users/ updates points of users
+    @Transactional
     public LeaderboardEntity save(LeaderboardEntity e) {
         Optional<LeaderboardEntity> optionalEntity = leaderboardRepository.findById(e.getUuid());
 

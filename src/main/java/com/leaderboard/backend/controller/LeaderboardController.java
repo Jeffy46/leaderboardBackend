@@ -7,7 +7,7 @@ import com.leaderboard.backend.model.LeaderboardEntity;
 import com.leaderboard.backend.service.LeaderboardService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "${allowedEndpoint}")
 public class LeaderboardController {
     private final LeaderboardService leaderboardService;
 
@@ -18,5 +18,10 @@ public class LeaderboardController {
     @GetMapping("/topThree")
     public List<LeaderboardEntity> topThree() {
         return leaderboardService.getTopThree();
+    }
+
+    @GetMapping("/{offset}/{limit}")
+    public List<LeaderboardEntity> getPlaces(@PathVariable("offset") int offset, @PathVariable("limit") int limit) {
+        return leaderboardService.getPlaces(offset, limit);
     }
 }
